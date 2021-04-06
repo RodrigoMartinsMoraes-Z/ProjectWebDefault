@@ -1,4 +1,4 @@
-﻿using Project.Domain.Peoples;
+﻿using Project.Domain.People;
 
 namespace Project.Domain.Users
 {
@@ -8,6 +8,7 @@ namespace Project.Domain.Users
         {
             Person = new Person();
         }
+        public int PersonId { get; set; }
         public string Email { get; set; }
         public string Login { get; set; }
         public string Password { get; set; }

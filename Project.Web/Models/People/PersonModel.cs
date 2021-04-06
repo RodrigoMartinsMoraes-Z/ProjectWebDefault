@@ -2,7 +2,7 @@
 
 using System;
 
-namespace Project.Web.Models.Peoples
+namespace Project.Web.Models.People
 {
     public class PersonModel
     {

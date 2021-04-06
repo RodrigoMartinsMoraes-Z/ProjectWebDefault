@@ -1,4 +1,4 @@
-﻿using Project.Web.Models.Peoples;
+﻿using Project.Web.Models.People;
 
 namespace Project.Web.Models.Users
 {
