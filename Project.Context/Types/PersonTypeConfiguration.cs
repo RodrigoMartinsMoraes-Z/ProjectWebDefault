@@ -15,6 +15,13 @@ namespace Project.Context.Types
         {
             builder.HasKey(p => p.Id);
 
+            builder.HasData(new Person
+            {
+                Name = "administrator",
+                Birth = DateTime.Today,
+                Id = 1
+            });
+
         }
     }
 }

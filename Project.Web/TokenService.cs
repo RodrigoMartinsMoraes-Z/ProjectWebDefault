@@ -1,6 +1,6 @@
 ﻿using Microsoft.IdentityModel.Tokens;
 
-using Project.Web.Models.Usuarios;
+using Project.Web.Models.Users;
 
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -12,7 +12,7 @@ namespace Project.Web
     {
         public static string Secret = "esseehosegredoh11onze";
 
-        public static string GenerateToken(UsuarioModel usuario)
+        public static string GenerateToken(UserModel user)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(Secret);
@@ -20,7 +20,7 @@ namespace Project.Web
             {
                 Subject = new ClaimsIdentity(new Claim[]
                 {
-                    new Claim(ClaimTypes.Name, usuario.Login.ToString())
+                    new Claim(ClaimTypes.Name, user.Login.ToString())
                 }),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
             };

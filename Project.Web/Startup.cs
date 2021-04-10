@@ -59,12 +59,11 @@ namespace Project.Web
             });
 
             services.AddDbContext<IDataBaseContext, DataBaseContext>(options =>
-         options
-         .UseLazyLoadingProxies()
-         .UseNpgsql(
+            options
+            .UseLazyLoadingProxies()
+            .UseNpgsql(
              Configuration.GetConnectionString("DataBase")),
-            ServiceLifetime.Scoped
-            );
+            ServiceLifetime.Scoped);
 
             services.AddSimpleInjector(_container, options =>
             {
