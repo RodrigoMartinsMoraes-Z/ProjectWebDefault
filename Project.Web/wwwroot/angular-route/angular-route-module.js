@@ -5,7 +5,8 @@ app.config(function ($routeProvider) {
             templateUrl: "Templates/Login/index.html"
         })
         .otherwise({
-            templateUrl: "Templates/Home/index.html"
+            templateUrl: "Templates/Home/index.html",
+            controller: "js/login/loginController.js"
         });
 
 });
