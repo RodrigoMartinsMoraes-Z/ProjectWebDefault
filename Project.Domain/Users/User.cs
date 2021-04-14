@@ -23,8 +23,8 @@ namespace Project.Domain.Users
         private string EncryptPassword(string value)
         {
             byte[] salt = Encoding.UTF8.GetBytes(Login);
-            byte[] senhaByte = Encoding.UTF8.GetBytes(value);
-            byte[] sha256 = new SHA256Managed().ComputeHash(senhaByte.Concat(salt).ToArray());
+            byte[] passByte = Encoding.UTF8.GetBytes(value);
+            byte[] sha256 = new SHA256Managed().ComputeHash(passByte.Concat(salt).ToArray());
             return Convert.ToBase64String(sha256);
         }
     }

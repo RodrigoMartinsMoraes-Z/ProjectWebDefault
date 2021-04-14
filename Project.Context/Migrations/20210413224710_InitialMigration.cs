@@ -48,7 +48,7 @@ namespace Project.Context.Migrations
             migrationBuilder.InsertData(
                 table: "People",
                 columns: new[] { "Id", "Birth", "Name" },
-                values: new object[] { 1, new DateTime(2021, 4, 9, 0, 0, 0, 0, DateTimeKind.Local), "administrator" });
+                values: new object[] { 1, new DateTime(2021, 4, 13, 0, 0, 0, 0, DateTimeKind.Local), "administrator" });
 
             migrationBuilder.InsertData(
                 table: "Users",

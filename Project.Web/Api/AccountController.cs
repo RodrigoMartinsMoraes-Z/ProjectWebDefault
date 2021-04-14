@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 using Project.Domain.Context;
@@ -9,7 +8,6 @@ using Project.Domain.Users;
 using Project.Web.Models.Users;
 
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
@@ -17,7 +15,7 @@ using System.Threading.Tasks;
 
 namespace Project.Web.Api
 {
-    [Route("api/[controller]")]
+    [Route("api/account")]
     [ApiController]
     public class AccountController : BaseApiController
     {

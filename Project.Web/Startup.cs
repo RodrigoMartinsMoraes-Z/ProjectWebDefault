@@ -1,3 +1,5 @@
+using AutoMapper;
+
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -74,6 +76,15 @@ namespace Project.Web
             });
             InitializeContainer();
 
+            // Auto Mapper Configurations
+            var mapperConfig = new MapperConfiguration(mc =>
+            {
+                mc.AddProfile(new WebAutoMapperConfig());
+            });
+
+            IMapper mapper = mapperConfig.CreateMapper();
+            services.AddSingleton(mapper);
+
             services.AddSwaggerGen();
 
             services.AddControllersWithViews();
@@ -122,16 +133,16 @@ namespace Project.Web
             options.DefaultFileNames.Add("/Templates/Home/index.html");
             app.UseDefaultFiles(options);
 
-            app.Use(async (context, next) =>
-            {
-                await next();
-                if (context.Response.StatusCode == 404 && !Path.HasExtension(context.Request.Path.Value))
-                {
-                    context.Request.Path = "/Templates/Home/index.html";
-                    context.Response.StatusCode = 200;
-                    await next();
-                }
-            });
+            //app.Use(async (context, next) =>
+            //{
+            //    await next();
+            //    if (context.Response.StatusCode == 404 && !Path.HasExtension(context.Request.Path.Value))
+            //    {
+            //        context.Request.Path = "/Templates/Home/index.html";
+            //        context.Response.StatusCode = 200;
+            //        await next();
+            //    }
+            //});
 
             app.UseEndpoints(endpoints =>
             {

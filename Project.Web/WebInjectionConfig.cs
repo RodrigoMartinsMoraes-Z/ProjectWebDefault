@@ -6,7 +6,6 @@ namespace Project.Web
     {
         public void Register(Container container)
         {
-
         }
     }
 }

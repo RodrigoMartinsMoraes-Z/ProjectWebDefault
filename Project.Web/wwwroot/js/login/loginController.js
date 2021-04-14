@@ -1,18 +1,19 @@
 ﻿var app = angular.module('app', []);
+(function () {
+    app.controller('loginController', ['$scope', '$http', function (scope, http) {
+        //apiUrl = "http://localhost/api/login";
+        //scope.controller = "loginController";
 
-app.controller('loginController', ['$scope','$http', function (scope, http) {
+        //scope.login = function () {
+        //    user = {
+        //        login: scope.userName,
+        //        password: scope.password
+        //    };
+        //    http.post(apiUrl, user)
+        //        .then(function () {
+        //            scope.log("login succesfull!")
+        //        });
+        //};
 
-    apiUrl = "http://localhost/api/login"
-
-    scope.login = function () {
-        user = {
-            login: scope.userName,
-            password: scope.password
-        }
-        http.post(apiUrl, user)
-            .then(function () {
-                scope.log("login succesfull!")
-            });
-    };
-
-}]);
+    }]);
+})();

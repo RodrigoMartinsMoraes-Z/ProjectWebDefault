@@ -40,7 +40,7 @@ namespace Project.Context.Migrations
                         new
                         {
                             Id = 1,
-                            Birth = new DateTime(2021, 4, 9, 0, 0, 0, 0, DateTimeKind.Local),
+                            Birth = new DateTime(2021, 4, 13, 0, 0, 0, 0, DateTimeKind.Local),
                             Name = "administrator"
                         });
                 });
