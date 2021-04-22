@@ -22,13 +22,10 @@ namespace Project.Web
 {
     public class Startup
     {
-        private readonly Container _container = new Container();
-
-        private readonly WebInjectionConfig _webInjectionConfig = new WebInjectionConfig();
-        private readonly DomainInjectionConfig _domainInjectionConfig = new DomainInjectionConfig();
-        private readonly ContextInjectionConfig _contextInjectionConfig = new ContextInjectionConfig();
-
-
+        private readonly Container _container = new();
+        private readonly WebInjectionConfig _webInjectionConfig = new();
+        private readonly DomainInjectionConfig _domainInjectionConfig = new();
+        private readonly ContextInjectionConfig _contextInjectionConfig = new();
 
         public Startup(IConfiguration configuration)
         {
