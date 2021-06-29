@@ -45,22 +45,31 @@ namespace Project.Web.Api
         {
             if (image.BackGround)
             {
+                var backgroundCategory = _context.Categories.FirstOrDefault(c => c.Name == "Background");
+                if (backgroundCategory == null)
+                {
+                    backgroundCategory = new Category { Name = "Background" };
+                    _context.Categories.Add(backgroundCategory);
+                    _context.SaveChanges();
+                }
+
+                var backgroundProduct = _context.Products.FirstOrDefault(p => p.Name == "Background");
+                if (backgroundProduct == null)
+                {
+                    backgroundProduct = new Product { Active = false, Name = "Background", CategoryId = backgroundCategory.Id };
+                    _context.Products.Add(backgroundProduct);
+                    _context.SaveChanges();
+                }
+
+
                 foreach (var backgroundImage in _context.Images.Where(i => i.BackGround))
                 {
                     backgroundImage.BackGround = false;
                 }
 
-                var backgroundProduct = _context.Products.FirstOrDefault(p => p.Name == "Background");
-                if (backgroundProduct == null)
-                    backgroundProduct = new Product { Active = false, Name = "Background" };
-
-
-                var backgroundCategory = _context.Categories.FirstOrDefault(c => c.Name == "Background");
-                if (backgroundCategory == null)
-                    backgroundCategory = new Category { Name = "Background" };
-
-                backgroundProduct.Category = backgroundCategory;
                 image.Product = backgroundProduct;
+                image.ProductId = backgroundProduct.Id;
+
             }
 
             await _fileManager.SaveImage(image, _context);
