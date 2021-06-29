@@ -109,8 +109,7 @@
                         scope.logout();
                     })
                     .catch(function () {
-                        alert("Ocorreu um problema inesperado, verifique se a senha digitada está correta e tente novamente, se o problema persistir entre em contato com o desenvolvedor.");
-
+                        alert("There was a problem with the request, check if the password are correctly and try again, if the error persists please contact the developer.");
                     });
             }
 

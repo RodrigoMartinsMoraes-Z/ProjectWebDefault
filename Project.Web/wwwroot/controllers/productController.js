@@ -47,11 +47,11 @@
         };
 
         scope.newProductPage = function () {
-            window.location.href = '/produto';
+            window.location.href = '/product';
         };
 
         scope.productDetailsPage = function (id) {
-            window.location.href = '/produto/' + id;
+            window.location.href = '/product/' + id;
 
         };
 
@@ -99,7 +99,7 @@
         scope.previousImage = function (min, imageIndex) {
             if (imageIndex > min)
                 return imageIndex - 1;
-            return imageIndex;+-..
+            return imageIndex;
         };
 
         scope.nextImage = function (max, imageIndex) {
