@@ -1,0 +1,191 @@
+﻿
+@{
+    ViewData["Title"] = "Gerenciamento";
+}
+
+<div ng-init="verificarAutenticacao()">
+    <ul class="nav nav-tabs">
+        <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/Conta">Geral</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/Produtos">Produtos</a>
+        </li>
+    </ul>
+    <br />
+    <form class="form-group">
+        <div class="row">
+            <div class="col-sm-9"></div>
+            <div class="col-sm-1">
+                <button type="button"
+                        class="btn btn-sm btn-outline-primary"
+                        ng-click="naoEditar = !naoEditar"
+                        title="editar">
+                    <i class="fa fa-edit"></i>
+                </button>
+            </div>
+
+            <div class="col-sm-1">
+                <button type="button"
+                        class="btn btn-sm btn-outline-success"
+                        ng-disabled="naoEditar"
+                        ng-click="salvar()"
+                        title="salvar alterações">
+                    <i class="fa fa-save"></i>
+                </button>
+            </div>
+
+            <div class="col-sm-1">
+                <button type="button"
+                        class="btn btn-sm btn-outline-warning"
+                        title="alterar senha"
+                        data-toggle="modal"
+                        data-target="#alterarSenha">
+                    <i class="fa fa-key"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="row"></div>
+
+        <div class="row">
+            <div class="col-sm-6">
+                <label>
+                    Login
+                </label>
+                    <input type="text"
+                           class="form-control"
+                           ng-model="user.login"
+                           ng-disabled="naoEditar" />
+            </div>
+
+            <div class="col-sm-6">
+                <label>
+                    Email
+                </label>
+                    <input type="text"
+                           class="form-control"
+                           ng-model="user.email"
+                           ng-disabled="naoEditar" />
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-6">
+                <label>
+                    Nome
+                </label>
+                    <input type="text"
+                           class="form-control"
+                           ng-model="user.person.name"
+                           ng-disabled="naoEditar" />
+            </div>
+
+            <div class="col-sm-6">
+                <label>
+                    Nascimento
+                </label>
+                    <input type="date"
+                           date-input
+                           class="form-control"
+                           ng-model="user.person.birth"
+                           ng-disabled="naoEditar" />
+            </div>
+        </div>
+    </form>
+    <div style=" border-top:groove">
+        <div class="row">
+            <div class="col">
+                Alterar imagem de fundo
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-8">
+                <input type="file"
+                       accept='image/*'
+                       id="imagemDeFundo"
+                       onchange="angular.element(this).scope().trocarFundo()" />
+            </div>
+            <div class="col-sm-2">
+                <button ng-click="naoEditar = !naoEditar; naoEditar = !naoEditar"
+                        title="Visualizar"
+                        class="btn btn-sm btn-outline-primary">
+                    <i class="fa fa-eye"></i>
+                </button>
+            </div>
+            <div class="col-sm-2">
+                <button ng-click="uparImagemDeFundo()"
+                        title="Confirmar"
+                        class="btn btn-sm btn-outline-success">
+                    <i class="fa fa-upload"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="alterarSenha" class="modal fade">
+        <div class="modal-dialog" style="margin-top:20%">
+            <div class="modal-content container">
+                <form class="form-group"
+                      style="margin:10px">
+                    <div class="row">
+                        <div class="col-sm-3"></div>
+                        <div class="col-sm-6">
+                            <label>
+                                Senha Atual
+                                <input type="password"
+                                       class="form-control"
+                                       ng-model="senhaAtual" />
+                            </label>
+                        </div>
+                        <div class="col-sm-3"></div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-3"></div>
+                        <div class="col-sm-6">
+                            <label>
+                                Nova Senha
+                                <input type="password"
+                                       class="form-control"
+                                       ng-model="novaSenha" />
+                            </label>
+                        </div>
+                        <div class="col-sm-3"></div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-3"></div>
+                        <div class="col-sm-6">
+                            <label>
+                                Confirme a Nova Senha
+                                <input type="password"
+                                       class="form-control"
+                                       ng-model="novaSenhaConfirma" />
+                            </label>
+                        </div>
+                        <div class="col-sm-3"></div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-2"></div>
+                        <div class="col-sm-8">
+                            <button class="btn btn-block btn-outline-primary"
+                                    ng-click="alterarSenha()">
+                                Confirmar
+                            </button>
+                        </div>
+                        <div class="col-sm-2"></div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@section Scripts{
+
+}

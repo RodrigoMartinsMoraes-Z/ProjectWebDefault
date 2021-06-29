@@ -1,0 +1,53 @@
+﻿
+@{
+    ViewData["Title"] = "Login";
+}
+
+<div ng-controller="contaController"
+     ng-init="direcionarLogin()">
+    <form class="form-group"
+          ng-submit="logar()">
+        <div class="row">
+            <div class="col-sm-4"></div>
+            <div class="col-sm-4">
+                <label>
+                    Login
+                    <input type="text"
+                           class="form-control"
+                           required
+                           ng-model="login" />
+                </label>
+            </div>
+            <div class="col-sm-4"></div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-4"></div>
+            <div class="col-sm-4">
+                <label>
+                    Password
+                    <input type="password"
+                           class="form-control"
+                           required
+                           ng-model="pass" />
+                </label>
+            </div>
+            <div class="col-sm-4"></div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-4"></div>
+            <div class="col-sm-4">
+                <button class="btn btn-sm btn-outline-primary"
+                        type="submit">
+                    <i class="fa fa-check"></i>
+                </button>
+            </div>
+            <div class="col-sm-4"></div>
+        </div>
+
+    </form>
+</div>
+@section Scripts{
+
+}

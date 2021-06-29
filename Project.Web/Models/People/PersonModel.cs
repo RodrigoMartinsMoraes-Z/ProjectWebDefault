@@ -1,5 +1,4 @@
-﻿using Project.Web.Models.Users;
-
+﻿
 using System;
 
 namespace Project.Web.Models.People
@@ -10,6 +9,5 @@ namespace Project.Web.Models.People
         public string Name { get; set; }
         public DateTime Birth { get; set; }
 
-        public virtual UserModel User { get; set; }
     }
 }

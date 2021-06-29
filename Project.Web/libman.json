@@ -7,8 +7,12 @@
       "destination": "wwwroot/angular.js/"
     },
     {
-      "library": "angular-route@1.8.2",
-      "destination": "wwwroot/angular-route/"
+      "library": "font-awesome@5.15.3",
+      "destination": "wwwroot/font-awesome/"
+    },
+    {
+      "library": "ngStorage@0.3.11",
+      "destination": "wwwroot/lib/ngStorage/"
     }
   ]
 }

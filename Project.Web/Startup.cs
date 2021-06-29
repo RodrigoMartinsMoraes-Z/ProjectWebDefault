@@ -13,8 +13,6 @@ using Project.Context;
 using Project.Domain;
 using Project.Domain.Context;
 
-using SimpleInjector;
-
 using System.IO;
 using System.Text;
 
@@ -22,15 +20,10 @@ namespace Project.Web
 {
     public class Startup
     {
-        private readonly Container _container = new();
-        private readonly WebInjectionConfig _webInjectionConfig = new();
-        private readonly DomainInjectionConfig _domainInjectionConfig = new();
-        private readonly ContextInjectionConfig _contextInjectionConfig = new();
+
 
         public Startup(IConfiguration configuration)
         {
-            _container.Options.ResolveUnregisteredConcreteTypes = false;
-
             Configuration = configuration;
         }
 
@@ -64,14 +57,7 @@ namespace Project.Web
              Configuration.GetConnectionString("DataBase")),
             ServiceLifetime.Scoped);
 
-            services.AddSimpleInjector(_container, options =>
-            {
-                // AddAspNetCore() wraps web requests in a Simple Injector scope and
-                // allows request-scoped framework services to be resolved.
-                options.AddAspNetCore();
-
-            });
-            InitializeContainer();
+            
 
             // Auto Mapper Configurations
             var mapperConfig = new MapperConfiguration(mc =>
@@ -87,17 +73,9 @@ namespace Project.Web
             services.AddControllersWithViews();
         }
 
-        private void InitializeContainer()
-        {
-            _webInjectionConfig.Register(_container);
-            _domainInjectionConfig.Register(_container);
-            _contextInjectionConfig.Register(_container);
-        }
-
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
-        {
-            app.UseSimpleInjector(_container);
+        {           
 
             if (env.IsDevelopment())
             {
@@ -124,22 +102,6 @@ namespace Project.Web
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "NOME DO PROJETO");
 
             });
-
-            DefaultFilesOptions options = new DefaultFilesOptions();
-            options.DefaultFileNames.Clear();
-            options.DefaultFileNames.Add("/Templates/Home/index.html");
-            app.UseDefaultFiles(options);
-
-            //app.Use(async (context, next) =>
-            //{
-            //    await next();
-            //    if (context.Response.StatusCode == 404 && !Path.HasExtension(context.Request.Path.Value))
-            //    {
-            //        context.Request.Path = "/Templates/Home/index.html";
-            //        context.Response.StatusCode = 200;
-            //        await next();
-            //    }
-            //});
 
             app.UseEndpoints(endpoints =>
             {

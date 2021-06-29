@@ -3,6 +3,7 @@
 using Project.Context.Types;
 using Project.Domain.Context;
 using Project.Domain.People;
+using Project.Domain.Products;
 using Project.Domain.Users;
 
 using System;
@@ -19,35 +20,22 @@ namespace Project.Context
 
         public DbSet<User> Users { get; set; }
 
+        public DbSet<Product> Products { get; set; }
+
+        public DbSet<Category> Categories { get; set; }
+
+        public DbSet<Image> Images { get; set; }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
-
             //User
             builder.ApplyConfiguration(new PersonTypeConfiguration());
             builder.ApplyConfiguration(new UserTypeConfiguration());
 
-            //Seeder(builder);
-        }
-
-        private void Seeder(ModelBuilder builder)
-        {
-            var person = new Person
-            {
-                Name = "administrator",
-                Birth = DateTime.Today,
-                Id = 1
-            };
-
-            var user = new User
-            {
-                Email = "starlighttecnologia@hotmail.com",
-                Login = "admin",
-                Password = "123",
-                PersonId = 1,
-            };
-
-            builder.Entity<User>().HasData(user);
-            builder.Entity<Person>().HasData(person);
+            //product
+            builder.ApplyConfiguration(new ProductTypeConfiguration());
+            builder.ApplyConfiguration(new ImageTypeConfiguration());
+            builder.ApplyConfiguration(new CategoryTypeConfiguration());
         }
     }
 }

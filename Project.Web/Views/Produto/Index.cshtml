@@ -1,0 +1,172 @@
+﻿@model int?
+@{
+    ViewData["Title"] = "Produto";
+}
+
+<script>
+  var model = @Json.Serialize(Model);
+</script>
+<div ng-init="verificarAutenticacao()"></div>
+<div ng-controller="produtosController"
+     ng-init="carregarProduto()">
+    <form class="form-group"
+          ng-submit="cadastrarProduto()">
+        <div class="row">
+            <div class="col-sm-10"></div>
+
+            <div class="col-sm-1">
+                <button class="btn btn-sm btn-outline-success"
+                        title="Confirmar">
+                    <i class="fa fa-check"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-6">
+                <label for="p.name">
+                    Nome do Produto
+                </label>
+                <input type="text"
+                       id="p.name"
+                       ng-model="product.name"
+                       required
+                       maxlength="45"
+                       class="form-control" />
+            </div>
+
+            <div class="col-sm-1"></div>
+            <div class="col-sm-4">
+                <label for="p.category">
+                    Categoria
+                </label>
+                <select ng-model="product.categoryId"
+                        ng-init="buscarCategorias()"
+                        class="form-control"
+                        id="p.category"
+                        ng-options="category.id as category.name for category in categories track by category.id"
+                        required>
+                    <option value="" selected="selected">Selecione a categoria</option>
+                    @*<option ng-repeat="category in categories" value="{{category.value}}">{{category.name}}</option>*@
+                </select>
+            </div>
+            <div class="col-sm-1">
+                <button title="Nova Categoria"
+                        type="button"
+                        class="btn btn-sm btn-outline-primary"
+                        id="btn.novo"
+                        data-toggle="modal"
+                        data-target="#novaCategoria"
+                        style="margin-top:40px">
+                    <i class="fa fa-plus"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12">
+                <label for="p.description">
+                    Descrição do Produto
+                </label>
+                <textarea ng-model="product.description"
+                          id="p.description"
+                          required
+                          maxlength="2000"
+                          spellcheck="true"
+                          class="form-control scrollabletextbox"></textarea>
+            </div>
+        </div>
+
+        <br />
+        <div class="row">
+            <div class="col-sm-auto">
+                Imagens do Produto ({{product.imagesCount}})
+            </div>
+        </div>
+        <div class="row"
+             style="margin-top:20px;">
+            <div class="col-sm-8">
+                <input type="file"
+                       accept='image/*'
+                       id="imagemDoProduto"
+                       multiple />
+            </div>
+            <div class="col-sm-2">
+            </div>
+            <div class="col-sm-2">
+                <button ng-click="uparImagem()"
+                        title="Confirmar"
+                        class="btn btn-sm btn-outline-success"
+                        type="button">
+                    <i class="fa fa-upload"></i>
+                </button>
+            </div>
+        </div>
+        <br/>
+        <div class="row" ng-repeat="image in product.images">
+            <div class="col-sm-4">
+                <img src="{{image.base64}}"
+                     style='display:block; width:100px;height:100px;' />
+            </div>
+
+            <div class="col-sm-6">{{image.name}}</div>
+            <div class="col-sm-1"></div>
+            <div class="col-sm-1">
+                <button class="btn btn-sm btn-outline-danger"
+                        title="deletar imagem"
+                        type="button"
+                        ng-click="deletarImagem(image.id)">
+                    <i class="fa fa-trash"></i>
+                </button>
+            </div>
+        </div>
+    </form>
+
+    <div id="novaCategoria" class="modal fade">
+        <div class="modal-dialog" style="margin-top:20%">
+            <div class="modal-content container">
+                <form class="form-group"
+                      style="margin:10px">
+                    <div class="row">
+                        <div class="col-sm-3"></div>
+                        <div class="col-sm-6">Nova Categoria</div>
+                        <div class="col-sm-3"></div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-3"></div>
+                        <div class="col-sm-6">
+                            <input type="text"
+                                   class="form-control"
+                                   ng-model="newCategory.name" />
+                        </div>
+                        <div class="col-sm-1"></div>
+                        <div class="col-sm-1">
+                            <button class="btn btn-sm btn-outline-primary"
+                                    ng-click="novaCategoria()"
+                                    type="button"
+                                    title="Confirmar">
+                                <i class="fa fa-check"></i>
+                            </button>
+                        </div>
+                        <div class="col-sm-1"></div>
+                    </div>
+
+                    <div class="row" ng-show="catCadastrada">
+                        <div class="col-sm-3"></div>
+                        <div class="col-sm-6">
+                            <p style="color:green">
+                                Categoria cadastrada com sucesso!
+                            </p>
+                        </div>
+                        <div class="col-sm-3"></div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="~/controllers/produtosController.js"></script>
+}

@@ -1,0 +1,94 @@
+﻿@{
+    ViewData["Title"] = "Produtos";
+}
+
+<div ng-init="verificarAutenticacao()">
+    <ul class="nav nav-tabs">
+        <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="/Conta">Geral</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link active" href="/Produtos">Produtos</a>
+        </li>
+    </ul>
+    <br />
+
+    <div ng-controller="produtosController"
+         ng-init="listarProdutos()">
+        <div class="row container">
+            <div class="col-sm-6">
+                <b>
+                    Gerenciamento de Produtos
+
+                </b>
+            </div>
+            <div class="col-sm-5"></div>
+            <div class="col-sm-1">
+                <button type="button"
+                        title="novo produto"
+                        class="btn btn-sm btn-outline-primary"
+                        ng-click="novoProduto()">
+                    <i class="fa fa-plus"></i>
+                </button>
+            </div>
+
+        </div>
+        <div>
+            <div class="table">
+                <div class="row"
+                     style="border-bottom:groove">
+                    <div class="col-sm-4"></div>
+                    <div class="col-sm-4">Produto</div>
+                    <div class="col-sm-3">Categoria</div>
+                    <div class="col-sm-1"></div>
+                </div>
+
+                <div class="row"
+                     ng-repeat="product in products"
+                     style="margin:5px"
+                     ng-init="min = 0; max = product.images.length; imageIndex = 0">
+                    <div class="col-sm-1">
+                        <button type="button"
+                                class="btn btn-sm btn-outline-primary"
+                                ng-click="imageIndex = imagemAnterior(min, imageIndex)"
+                                style="margin-top:50%">
+                            <i class="fa fa-arrow-alt-circle-left"></i>
+                        </button>
+                    </div>
+                    <div class="col-sm-2">
+                        <img src="data:{{product.images[imageIndex].type}};base64,{{product.images[imageIndex].base64}}"
+                             style='display:block; width:100px;height:100px;' />
+                    </div>
+                    <div class="col-sm-1">
+                        <button type="button"
+                                class="btn btn-sm btn-outline-primary"
+                                ng-click="imageIndex = proximaImagem(max, imageIndex)"
+                                style="margin-top:50%">
+                            <i class="fa fa-arrow-alt-circle-right"></i>
+                        </button>
+                    </div>
+                    <div class="col-sm-4">{{product.name}}</div>
+                    <div class="col-sm-3">{{product.category.name}}</div>
+                    <div class="col-sm-1">
+                        <button type="button"
+                                class="btn btn-sm btn-outline-info"
+                                title="editar"
+                                ng-click="detalhesProduto(product.id)">
+                            <i class="fa fa-edit"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="row">
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+@section Scripts{
+    <script src="~/controllers/produtosController.js"></script>
+}
