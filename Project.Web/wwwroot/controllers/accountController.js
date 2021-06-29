@@ -1,7 +1,7 @@
 ﻿(function () {
     var app = angular.module('app', ["ngStorage"]);
 
-    app.controller('contaController', ['$scope', '$http', '$localStorage', '$sessionStorage', '$window', function (scope, http, local, session, window) {
+    app.controller('accountController', ['$scope', '$http', '$localStorage', '$sessionStorage', '$window', function (scope, http, local, session, window) {
         loginUrl = "/api/account/login";
         local.config = {};
 

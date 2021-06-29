@@ -1,7 +1,7 @@
 ﻿(function () {
     var app = angular.module('app');
 
-    app.controller('produtosController', ['$scope', '$http', '$localStorage', '$window', function (scope, http, local, window) {
+    app.controller('productController', ['$scope', '$http', '$localStorage', '$window', function (scope, http, local, window) {
 
         scope.catCadastrada = false;
         scope.product = {};

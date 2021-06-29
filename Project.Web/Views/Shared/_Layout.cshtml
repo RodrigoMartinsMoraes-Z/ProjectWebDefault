@@ -3,19 +3,19 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Allka</title>
+    <title>@ViewData["Title"] - Market</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
     <link rel="stylesheet" href="~/font-awesome/css/all.min.css" />
     <base href="/">
 </head>
 <body ng-app="app"
-      ng-controller="contaController"
+      ng-controller="accountController"
       ng-style="{'background-image':'url('+backgroundImage+')','height':'100%','width':'100%', 'background-position': 'center', 'background-repeat': 'no-repeat','background-size': 'cover'}">
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Allka</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Market</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -54,7 +54,7 @@
     <footer class="border-top footer text-muted">
         <div class="container">
             <div>
-                &copy; 2021 - Allka Bandeirinhas 
+                &copy; 2021 - Market Dart Digital  
             </div>
         </div>
     </footer>
@@ -63,7 +63,7 @@
     <script src="~/font-awesome/js/all.min.js"></script>
     <script src="~/angular.js/angular.min.js"></script>
     <script src="~/lib/ngStorage/ngStorage.min.js"></script>
-    <script src="~/controllers/contaController.js"></script>
+    <script src="~/controllers/accountController.js"></script>
 
     @await RenderSectionAsync("Scripts", required: true)
 </body>

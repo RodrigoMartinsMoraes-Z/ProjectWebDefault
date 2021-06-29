@@ -7,7 +7,7 @@
   var model = @Json.Serialize(Model);
 </script>
 <div ng-init="verificarAutenticacao()"></div>
-<div ng-controller="produtosController"
+<div ng-controller="productController"
      ng-init="carregarProduto()">
     <form class="form-group"
           ng-submit="cadastrarProduto()">
@@ -168,5 +168,5 @@
 </div>
 
 @section Scripts{
-    <script src="~/controllers/produtosController.js"></script>
+    <script src="~/controllers/productController.js"></script>
 }
