@@ -6,7 +6,7 @@
 <script>
   var model = @Json.Serialize(Model);
 </script>
-<div ng-init="verificarAutenticacao()"></div>
+<div ng-init="verifyAuth()"></div>
 <div ng-controller="productController"
      ng-init="carregarProduto()">
     <form class="form-group"

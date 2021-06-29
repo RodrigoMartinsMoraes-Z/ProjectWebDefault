@@ -25,19 +25,19 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
-                        <li class="nav-item" ng-show="estaLogado()">
+                        <li class="nav-item" ng-show="loggedIn()">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Conta" asp-action="Index">Gerenciamento</a>
                         </li>
                     </ul>
 
                     <ul class="navbar-nav pull-right">
-                        <li class="" ng-show="estaLogado()">
+                        <li class="" ng-show="loggedIn()">
                             <a class=" btn text-dark"
-                               ng-click="sair()"
+                               ng-click="logout()"
                                href="">Sair</a>
 
                         </li>
-                        <li class="nav-item" ng-hide="estaLogado()">
+                        <li class="nav-item" ng-hide="loggedIn()">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Conta" asp-action="Login">Login</a>
                         </li>
                     </ul>

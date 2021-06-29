@@ -7,11 +7,11 @@
 
         scope.user = local.user;
 
-        scope.naoEditar = true;
+        scope.dontEdit = true;
 
         scope.backgroundImage = "data:" + local.backgroundType + ";base64," + local.backgroundImage;
 
-        scope.estaLogado = function () {
+        scope.loggedIn = function () {
             if (scope.user != null) {
                 local.config = {
                     headers: {
@@ -25,43 +25,42 @@
             }
         }
 
-        scope.direcionarLogin = function () {
-            if (scope.estaLogado() &&
+        scope.redirectLogin = function () {
+            if (scope.loggedIn() &&
                 (
-                    window.location.pathname == "/Conta/Login" ||
-                    window.location.pathname == "/Conta/login" ||
-                    window.location.pathname == "/conta/login" ||
-                    window.location.pathname == "/conta/Login"
+                    window.location.pathname == "/Account/Login" ||
+                window.location.pathname == "/Account/login" ||
+                window.location.pathname == "/account/login" ||
+                window.location.pathname == "/account/Login"
                 ))
                 window.location.href = '/Conta';
-            else if (!scope.estaLogado())
+            else if (!scope.loggedIn())
                 if (
-                    window.location.pathname == "/Conta/Login" ||
-                    window.location.pathname == "/Conta/login" ||
-                    window.location.pathname == "/conta/login" ||
-                    window.location.pathname == "/conta/Login"
+                    window.location.pathname == "/Account/Login" ||
+                    window.location.pathname == "/Account/login" ||
+                    window.location.pathname == "/account/login" ||
+                    window.location.pathname == "/account/Login"
                 )
                     return;
                 else
-                    window.location.href = '/Conta/Login';
+                    window.location.href = '/Account/Login';
         }
 
         scope.logar = function () {
 
             http.post(loginUrl + "?login=" + scope.login + "&pass=" + scope.pass)
                 .then(function (r) {
-                    console.log("login succesfull!");
                     local.user = r.data;
-                    scope.estaLogado();
-                    window.location.href = '/Conta';
+                    scope.loggedIn();
+                    window.location.href = '/Account';
                 })
                 .catch(function () {
-                    alert("Usuario ou senha incorreto!");
+                    alert("User or Password are incorrect!");
                 });
         };
 
-        scope.verificarAutenticacao = function () {
-            if (scope.estaLogado())
+        scope.verifyAuth = function () {
+            if (scope.loggedIn())
                 http.get("/api/account/verify-auth", local.config)
                     .then(
                         function () {
@@ -69,15 +68,15 @@
                         })
                     .catch(
                         function () {
-                            alert("Sua sessão expirou, favor entrar novamente.")
+                            alert("Your session has expired, please login again.")
                             local.user = null;
                             scope.user = null;
-                            scope.direcionarLogin();
+                            scope.redirectLogin();
                         });
         }
 
         scope.salvar = function () {
-            scope.verificarAutenticacao();
+            scope.verifyAuth();
 
             http.put("api/account/update", scope.user, local.config)
                 .then(function (r) {
@@ -86,38 +85,39 @@
 
                 })
                 .catch(function () {
-                    alert("Ocorreu um problema com a requisição, se o erro persistir entre em contato com o desenvolvedor.");
+                    alert("There was a problem with the request, if the error persists please contact the developer.");
                 });
         }
 
-        scope.sair = function () {
+        scope.logout = function () {
 
             local.user = null;
             scope.user = null;
-            scope.direcionarLogin();
+            scope.redirectLogin();
 
         }
 
-        scope.alterarSenha = function () {
-            scope.verificarAutenticacao();
+        scope.changePass = function () {
+            scope.verifyAuth();
 
-            if (scope.novaSenha != scope.novaSenhaConfirma)
-                alert("As senhas não conferem!");
+            if (scope.newPass != scope.newPassCheck)
+                alert("Passwords don't match!");
             else {
-                http.put("/api/account/change-pass?login=" + scope.user.login + "&pass=" + scope.senhaAtual + "&newPass=" + scope.novaSenha, null, local.config)
+                http.put("/api/account/change-pass?login=" + scope.user.login + "&pass=" + scope.currentPassword + "&newPass=" + scope.newPass, null, local.config)
                     .then(function () {
-                        alert("Senha alterada com sucesso, favor realizar login novamente.")
-                        scope.sair();
+                        alert("Password changed successfully, please login again.")
+                        scope.logout();
                     })
                     .catch(function () {
                         alert("Ocorreu um problema inesperado, verifique se a senha digitada está correta e tente novamente, se o problema persistir entre em contato com o desenvolvedor.");
+
                     });
             }
 
         };
 
-        scope.uparImagemDeFundo = function () {
-            var f = document.getElementById('imagemDeFundo').files[0],
+        scope.uploadBackground = function () {
+            var f = document.getElementById('backgroundImage').files[0],
                 r = new FileReader();
 
             r.onloadend = function (e) {
@@ -135,7 +135,7 @@
             r.readAsDataURL(f);
         };
 
-        scope.buscarBackGround = function () {
+        scope.getBackground = function () {
             if (local.backgroundImage == null) {
 
                 if (local.background != null)
@@ -151,8 +151,8 @@
             }
         };
 
-        scope.trocarFundo = function () {
-            var f = document.getElementById('imagemDeFundo').files[0],
+        scope.changeBackground = function () {
+            var f = document.getElementById('backgroundImage').files[0],
                 r = new FileReader();
 
             r.onloadend = function (e) {
@@ -164,7 +164,7 @@
             r.readAsDataURL(f);
         }
 
-        scope.buscarBackGround();
+        scope.getBackground();
     }]);
 
     app.directive('dateInput', function () {
