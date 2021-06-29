@@ -12,6 +12,7 @@ using Microsoft.IdentityModel.Tokens;
 using Project.Context;
 using Project.Domain;
 using Project.Domain.Context;
+using Project.Domain.Tools;
 
 using System.IO;
 using System.Text;
@@ -57,8 +58,6 @@ namespace Project.Web
              Configuration.GetConnectionString("DataBase")),
             ServiceLifetime.Scoped);
 
-            
-
             // Auto Mapper Configurations
             var mapperConfig = new MapperConfiguration(mc =>
             {
@@ -71,11 +70,14 @@ namespace Project.Web
             services.AddSwaggerGen();
 
             services.AddControllersWithViews();
+
+            //register interfaces
+            services.AddScoped<IFileManager, FileManager>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
-        {           
+        {
 
             if (env.IsDevelopment())
             {

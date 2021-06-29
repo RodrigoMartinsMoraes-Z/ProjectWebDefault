@@ -1,6 +1,6 @@
 ﻿@model int?
 @{
-    ViewData["Title"] = "Produto";
+    ViewData["Title"] = "Product";
 }
 
 <script>
@@ -16,7 +16,7 @@
 
             <div class="col-sm-1">
                 <button class="btn btn-sm btn-outline-success"
-                        title="Confirmar">
+                        title="Confirm">
                     <i class="fa fa-check"></i>
                 </button>
             </div>
@@ -25,7 +25,7 @@
         <div class="row">
             <div class="col-sm-6">
                 <label for="p.name">
-                    Nome do Produto
+                    Product Name
                 </label>
                 <input type="text"
                        id="p.name"
@@ -38,7 +38,7 @@
             <div class="col-sm-1"></div>
             <div class="col-sm-4">
                 <label for="p.category">
-                    Categoria
+                    Category
                 </label>
                 <select ng-model="product.categoryId"
                         ng-init="getCategories()"
@@ -46,12 +46,11 @@
                         id="p.category"
                         ng-options="category.id as category.name for category in categories track by category.id"
                         required>
-                    <option value="" selected="selected">Selecione a categoria</option>
-                    @*<option ng-repeat="category in categories" value="{{category.value}}">{{category.name}}</option>*@
+                    <option value="" selected="selected">Select the Category</option>
                 </select>
             </div>
             <div class="col-sm-1">
-                <button title="Nova Categoria"
+                <button title="New Category"
                         type="button"
                         class="btn btn-sm btn-outline-primary"
                         id="btn.novo"
@@ -66,7 +65,7 @@
         <div class="row">
             <div class="col-sm-12">
                 <label for="p.description">
-                    Descrição do Produto
+                    Product Description
                 </label>
                 <textarea ng-model="product.description"
                           id="p.description"
@@ -80,7 +79,7 @@
         <br />
         <div class="row">
             <div class="col-sm-auto">
-                Imagens do Produto ({{product.imagesCount}})
+                Product Images
             </div>
         </div>
         <div class="row"
@@ -95,7 +94,7 @@
             </div>
             <div class="col-sm-2">
                 <button ng-click="loadImage()"
-                        title="Confirmar"
+                        title="Confirm"
                         class="btn btn-sm btn-outline-success"
                         type="button">
                     <i class="fa fa-upload"></i>
@@ -113,7 +112,7 @@
             <div class="col-sm-1"></div>
             <div class="col-sm-1">
                 <button class="btn btn-sm btn-outline-danger"
-                        title="deletar imagem"
+                        title="delete image"
                         type="button"
                         ng-click="deleteImage(image.id)">
                     <i class="fa fa-trash"></i>
@@ -129,7 +128,7 @@
                       style="margin:10px">
                     <div class="row">
                         <div class="col-sm-3"></div>
-                        <div class="col-sm-6">Nova Categoria</div>
+                        <div class="col-sm-6">New Category</div>
                         <div class="col-sm-3"></div>
                     </div>
 
@@ -145,7 +144,7 @@
                             <button class="btn btn-sm btn-outline-primary"
                                     ng-click="newCategory()"
                                     type="button"
-                                    title="Confirmar">
+                                    title="Confirm">
                                 <i class="fa fa-check"></i>
                             </button>
                         </div>
@@ -156,7 +155,7 @@
                         <div class="col-sm-3"></div>
                         <div class="col-sm-6">
                             <p style="color:green">
-                                Categoria cadastrada com sucesso!
+                                Category has successfully registered!
                             </p>
                         </div>
                         <div class="col-sm-3"></div>

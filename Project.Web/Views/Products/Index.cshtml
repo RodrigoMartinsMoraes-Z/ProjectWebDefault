@@ -5,10 +5,10 @@
 <div ng-init="verifyAuth()">
     <ul class="nav nav-tabs">
         <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="/Conta">Geral</a>
+            <a class="nav-link" aria-current="page" href="/Account">General</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link active" href="/Produtos">Produtos</a>
+            <a class="nav-link active" href="/Products">Products</a>
         </li>
     </ul>
     <br />
@@ -18,14 +18,14 @@
         <div class="row container">
             <div class="col-sm-6">
                 <b>
-                    Gerenciamento de Produtos
+                    Products Manager
 
                 </b>
             </div>
             <div class="col-sm-5"></div>
             <div class="col-sm-1">
                 <button type="button"
-                        title="novo produto"
+                        title="new product"
                         class="btn btn-sm btn-outline-primary"
                         ng-click="newProductPage()">
                     <i class="fa fa-plus"></i>
@@ -38,8 +38,8 @@
                 <div class="row"
                      style="border-bottom:groove">
                     <div class="col-sm-4"></div>
-                    <div class="col-sm-4">Produto</div>
-                    <div class="col-sm-3">Categoria</div>
+                    <div class="col-sm-4">Product</div>
+                    <div class="col-sm-3">Category</div>
                     <div class="col-sm-1"></div>
                 </div>
 
@@ -72,7 +72,7 @@
                     <div class="col-sm-1">
                         <button type="button"
                                 class="btn btn-sm btn-outline-info"
-                                title="editar"
+                                title="edit"
                                 ng-click="productDetailsPage(product.id)">
                             <i class="fa fa-edit"></i>
                         </button>

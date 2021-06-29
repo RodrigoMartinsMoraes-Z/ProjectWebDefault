@@ -2,14 +2,14 @@
 
 namespace Project.Web.Controllers
 {
-    public class ProdutoController : Controller
+    public class ProductController : Controller
     {   
-        [Route("produto")]
+        [Route("product")]
         public IActionResult Index()
         {
             return View(null);
         }        
-        [Route("produto/{x}")]
+        [Route("product/{x}")]
         public IActionResult Index(int? x = null)
         {
             return View(x);

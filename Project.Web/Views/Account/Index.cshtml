@@ -6,10 +6,10 @@
 <div ng-init="verifyAuth()">
     <ul class="nav nav-tabs">
         <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/Conta">Geral</a>
+            <a class="nav-link active" aria-current="page" href="/Account">General</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="/Produtos">Produtos</a>
+            <a class="nav-link" href="/Products">Product</a>
         </li>
     </ul>
     <br />
@@ -20,7 +20,7 @@
                 <button type="button"
                         class="btn btn-sm btn-outline-primary"
                         ng-click="dontEdit = !dontEdit"
-                        title="editar">
+                        title="edit">
                     <i class="fa fa-edit"></i>
                 </button>
             </div>
@@ -30,7 +30,7 @@
                         class="btn btn-sm btn-outline-success"
                         ng-disabled="dontEdit"
                         ng-click="salvar()"
-                        title="salvar alterações">
+                        title="save changes">
                     <i class="fa fa-save"></i>
                 </button>
             </div>
@@ -38,7 +38,7 @@
             <div class="col-sm-1">
                 <button type="button"
                         class="btn btn-sm btn-outline-warning"
-                        title="alterar senha"
+                        title="change password"
                         data-toggle="modal"
                         data-target="#changePass">
                     <i class="fa fa-key"></i>
@@ -73,7 +73,7 @@
         <div class="row">
             <div class="col-sm-6">
                 <label>
-                    Nome
+                    Name
                 </label>
                     <input type="text"
                            class="form-control"
@@ -83,7 +83,7 @@
 
             <div class="col-sm-6">
                 <label>
-                    Nascimento
+                    Birth
                 </label>
                     <input type="date"
                            date-input
@@ -96,7 +96,7 @@
     <div style=" border-top:groove">
         <div class="row">
             <div class="col">
-                Alterar imagem de fundo
+                Change Background
             </div>
         </div>
         <div class="row">
@@ -108,14 +108,14 @@
             </div>
             <div class="col-sm-2">
                 <button ng-click="dontEdit = !dontEdit; dontEdit = !dontEdit"
-                        title="Visualizar"
+                        title="Visualize"
                         class="btn btn-sm btn-outline-primary">
                     <i class="fa fa-eye"></i>
                 </button>
             </div>
             <div class="col-sm-2">
                 <button ng-click="uploadBackground()"
-                        title="Confirmar"
+                        title="Confirm changes"
                         class="btn btn-sm btn-outline-success">
                     <i class="fa fa-upload"></i>
                 </button>
@@ -133,7 +133,7 @@
                         <div class="col-sm-3"></div>
                         <div class="col-sm-6">
                             <label>
-                                Senha Atual
+                                Current Password
                                 <input type="password"
                                        class="form-control"
                                        ng-model="currentPassword" />
@@ -146,7 +146,7 @@
                         <div class="col-sm-3"></div>
                         <div class="col-sm-6">
                             <label>
-                                Nova Senha
+                                New Password
                                 <input type="password"
                                        class="form-control"
                                        ng-model="newPass" />
@@ -159,7 +159,7 @@
                         <div class="col-sm-3"></div>
                         <div class="col-sm-6">
                             <label>
-                                Confirme a Nova Senha
+                                Confirm new Password
                                 <input type="password"
                                        class="form-control"
                                        ng-model="newPassCheck" />
@@ -173,7 +173,7 @@
                         <div class="col-sm-8">
                             <button class="btn btn-block btn-outline-primary"
                                     ng-click="changePass()">
-                                Confirmar
+                                Change Password
                             </button>
                         </div>
                         <div class="col-sm-2"></div>
