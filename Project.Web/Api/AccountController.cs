@@ -32,28 +32,73 @@ namespace Project.Web.Api
         [ProducesResponseType(typeof(UserModel), 200)]
         public async Task<ActionResult> Logar(string login, string pass)
         {
-            pass = EncriptarSenha(login, pass);
+            pass = EncriptPassword(login, pass);
 
             User user = _context.Users.FirstOrDefault(u => u.Login == login && u.Password == pass);
-
-            _loggedUser = user;
 
             if (user == null)
                 return NotFound();
 
-            UserModel usuarioModel = _mapper.Map<UserModel>(user);
-            usuarioModel.Token = TokenService.GenerateToken(usuarioModel);
+            UserModel userModel = _mapper.Map<UserModel>(user);
+            userModel.Token = TokenService.GenerateToken(userModel);
 
             await Task.CompletedTask;
 
-            return Ok(usuarioModel);
+            return Ok(userModel);
         }
 
-        private static string EncriptarSenha(string login, string senha)
+        [HttpPost, Route("logout")]
+        public ActionResult Logout()
+        {
+            return Ok();
+        }
+
+        [HttpPut, Route("update")]
+        [ProducesResponseType(typeof(UserModel), 200)]
+        public ActionResult UpdateAccount(UserModel model)
+        {
+            User user = _context.Users.Find(model.Id);
+
+            if (user == null)
+                return BadRequest();
+
+            user.Login = model.Login;
+            user.Email = model.Email;
+            user.Person.Name = model.Person.Name;
+            user.Person.Birth = model.Person.Birth;
+
+            _context.SaveChanges();
+
+            return Ok(_mapper.Map<UserModel>(user));
+        }
+
+        [HttpPut, Route("change-pass")]
+        public ActionResult ChangePass(string login, string pass, string newPass)
+        {
+            pass = EncriptPassword(login, pass);
+
+            var user = _context.Users.FirstOrDefault(u => u.Login == login && u.Password == pass);
+
+            if (user == null)
+                return NotFound();
+
+            user.Password = newPass;
+            _context.SaveChanges();
+
+            return Ok();
+        }
+
+        [HttpGet, Route("verify-auth")]
+        public ActionResult VerifyAuth()
+        {
+            return Ok();
+        }
+
+        private static string EncriptPassword(string login, string pass)
         {
             byte[] salt = Encoding.UTF8.GetBytes(login);
-            byte[] senhaByte = Encoding.UTF8.GetBytes(senha);
-            byte[] sha256 = new SHA256Managed().ComputeHash(senhaByte.Concat(salt).ToArray());
+            byte[] passByte = Encoding.UTF8.GetBytes(pass);
+            byte[] sha256 = new SHA256Managed().ComputeHash(passByte.Concat(salt).ToArray());
             return Convert.ToBase64String(sha256);
         }
     }
