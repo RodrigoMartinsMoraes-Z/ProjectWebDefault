@@ -18,10 +18,11 @@
         };
 
         scope.newCategory = function () {
-            http.put("/api/category/", scope.newCategory, local.config)
+            http.put("/api/category/", scope.category, local.config)
                 .then(function () {
-                    scope.newCategory = {};
+                    scope.category = {};
                     scope.categoryRegistred = true;
+                    scope.getCategories();
                 })
                 .catch(function () {
                     alert("Categoria já cadastrada!");
