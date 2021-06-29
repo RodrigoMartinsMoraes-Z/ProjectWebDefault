@@ -8,9 +8,9 @@
 </script>
 <div ng-init="verifyAuth()"></div>
 <div ng-controller="productController"
-     ng-init="carregarProduto()">
+     ng-init="getProduct()">
     <form class="form-group"
-          ng-submit="cadastrarProduto()">
+          ng-submit="newProduct()">
         <div class="row">
             <div class="col-sm-10"></div>
 
@@ -41,7 +41,7 @@
                     Categoria
                 </label>
                 <select ng-model="product.categoryId"
-                        ng-init="buscarCategorias()"
+                        ng-init="getCategories()"
                         class="form-control"
                         id="p.category"
                         ng-options="category.id as category.name for category in categories track by category.id"
@@ -56,7 +56,7 @@
                         class="btn btn-sm btn-outline-primary"
                         id="btn.novo"
                         data-toggle="modal"
-                        data-target="#novaCategoria"
+                        data-target="#newCategory"
                         style="margin-top:40px">
                     <i class="fa fa-plus"></i>
                 </button>
@@ -88,13 +88,13 @@
             <div class="col-sm-8">
                 <input type="file"
                        accept='image/*'
-                       id="imagemDoProduto"
+                       id="productImage"
                        multiple />
             </div>
             <div class="col-sm-2">
             </div>
             <div class="col-sm-2">
-                <button ng-click="uparImagem()"
+                <button ng-click="loadImage()"
                         title="Confirmar"
                         class="btn btn-sm btn-outline-success"
                         type="button">
@@ -115,14 +115,14 @@
                 <button class="btn btn-sm btn-outline-danger"
                         title="deletar imagem"
                         type="button"
-                        ng-click="deletarImagem(image.id)">
+                        ng-click="deleteImage(image.id)">
                     <i class="fa fa-trash"></i>
                 </button>
             </div>
         </div>
     </form>
 
-    <div id="novaCategoria" class="modal fade">
+    <div id="newCategory" class="modal fade">
         <div class="modal-dialog" style="margin-top:20%">
             <div class="modal-content container">
                 <form class="form-group"
@@ -143,7 +143,7 @@
                         <div class="col-sm-1"></div>
                         <div class="col-sm-1">
                             <button class="btn btn-sm btn-outline-primary"
-                                    ng-click="novaCategoria()"
+                                    ng-click="newCategory()"
                                     type="button"
                                     title="Confirmar">
                                 <i class="fa fa-check"></i>
@@ -152,7 +152,7 @@
                         <div class="col-sm-1"></div>
                     </div>
 
-                    <div class="row" ng-show="catCadastrada">
+                    <div class="row" ng-show="categoryRegistred">
                         <div class="col-sm-3"></div>
                         <div class="col-sm-6">
                             <p style="color:green">
