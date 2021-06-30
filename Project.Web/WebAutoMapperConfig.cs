@@ -45,7 +45,8 @@ namespace Project.Web
 
         private void User()
         {
-            CreateMap<User, UserModel>();
+            CreateMap<User, UserModel>()
+                .ForMember(u => u.Password, opt => opt.Ignore());
             CreateMap<UserModel, User>();
         }
     }

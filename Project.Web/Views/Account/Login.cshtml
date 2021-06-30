@@ -6,7 +6,7 @@
 <div ng-controller="accountController"
      ng-init="redirectLogin()">
     <form class="form-group"
-          ng-submit="logar()">
+          ng-submit="accessAccount()"> 
         <div class="row">
             <div class="col-sm-4"></div>
             <div class="col-sm-4">
@@ -37,13 +37,22 @@
 
         <div class="row">
             <div class="col-sm-4"></div>
-            <div class="col-sm-4">
+            <div class="col-sm-1">
                 <button class="btn btn-sm btn-outline-primary"
                         type="submit">
                     <i class="fa fa-check"></i>
                 </button>
             </div>
-            <div class="col-sm-4"></div>
+            <div class="col-sm-1"></div>
+            <div class="col-sm-1">
+                <button type="button"
+                        class="btn btn-sm btn-outline-success"
+                        title="new user"
+                        ng-click="pageNewAccount()">
+                    <i class="fa fa-user-plus"></i>
+                </button>
+            </div>
+            <div class="col-sm-5"></div>
         </div>
 
     </form>

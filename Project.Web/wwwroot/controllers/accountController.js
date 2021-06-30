@@ -23,15 +23,15 @@
             else {
                 return false;
             }
-        }
+        };
 
         scope.redirectLogin = function () {
             if (scope.loggedIn() &&
                 (
                     window.location.pathname == "/Account/Login" ||
-                window.location.pathname == "/Account/login" ||
-                window.location.pathname == "/account/login" ||
-                window.location.pathname == "/account/Login"
+                    window.location.pathname == "/Account/login" ||
+                    window.location.pathname == "/account/login" ||
+                    window.location.pathname == "/account/Login"
                 ))
                 window.location.href = '/Conta';
             else if (!scope.loggedIn())
@@ -44,9 +44,9 @@
                     return;
                 else
                     window.location.href = '/Account/Login';
-        }
+        };
 
-        scope.logar = function () {
+        scope.accessAccount = function () {
 
             http.post(loginUrl + "?login=" + scope.login + "&pass=" + scope.pass)
                 .then(function (r) {
@@ -73,9 +73,9 @@
                             scope.user = null;
                             scope.redirectLogin();
                         });
-        }
+        };
 
-        scope.salvar = function () {
+        scope.saveChanges = function () {
             scope.verifyAuth();
 
             http.put("api/account/update", scope.user, local.config)
@@ -87,7 +87,25 @@
                 .catch(function () {
                     alert("There was a problem with the request, if the error persists please contact the developer.");
                 });
-        }
+        };
+
+        scope.newUser = function () {
+            if (scope.user.password != scope.user.passwordConfirm) {
+                alert("Passwords don't match!");
+                return;
+            }
+            else {
+                http.post("api/account/create", scope.user)
+                    .then(function () {
+                        window.location.href = '/Account/Login';
+                        alert("User created succefull, please login. ");
+
+                    })
+                    .catch(function () {
+                        alert("There was a problem with the request, if the error persists please contact the developer.");
+                    });
+            }
+        };
 
         scope.logout = function () {
 
@@ -95,7 +113,7 @@
             scope.user = null;
             scope.redirectLogin();
 
-        }
+        };
 
         scope.changePass = function () {
             scope.verifyAuth();
@@ -161,7 +179,11 @@
             }
 
             r.readAsDataURL(f);
-        }
+        };
+
+        scope.pageNewAccount = function () {
+            window.location.href = '/account/new';
+        };
 
         scope.getBackground();
     }]);

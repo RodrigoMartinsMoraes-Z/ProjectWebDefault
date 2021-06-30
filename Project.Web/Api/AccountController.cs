@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 using Project.Domain.Context;
+using Project.Domain.People;
 using Project.Domain.Users;
 using Project.Web.Models.Users;
 
@@ -53,9 +54,26 @@ namespace Project.Web.Api
             return Ok();
         }
 
+        [HttpPost, Route("create"), AllowAnonymous]
+        public ActionResult CreateAccount([FromBody] UserModel model)
+        {
+            var user = _mapper.Map<User>(model);
+
+            Person person = new Person();
+            _context.People.Add(person);
+            _context.SaveChanges();
+
+            user.PersonId = person.Id;
+
+            _context.Users.Add(user);
+            _context.SaveChanges();
+
+            return Ok();
+        }
+
         [HttpPut, Route("update")]
         [ProducesResponseType(typeof(UserModel), 200)]
-        public ActionResult UpdateAccount(UserModel model)
+        public ActionResult UpdateAccount([FromBody] UserModel model)
         {
             User user = _context.Users.Find(model.Id);
 

@@ -1,0 +1,63 @@
+﻿@{
+    ViewData["Title"] = "New Account";
+}
+
+<div ng-controller="accountController">
+    <form class="form-group"
+          ng-submit="newUser()">
+        <div class="row">
+            <div class="col-sm-6">
+                <label>
+                    Login
+                </label>
+                <input type="text"
+                       class="form-control"
+                       ng-model="user.login"
+                       required />
+            </div>
+
+            <div class="col-sm-6">
+                <label>
+                    Email
+                </label>
+                <input type="text"
+                       class="form-control"
+                       ng-model="user.email"
+                       required />
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-6">
+                <label>
+                    Password
+                </label>
+                <input type="password"
+                       class="form-control"
+                       ng-model="user.password"
+                       required />
+            </div>
+
+            <div class="col-sm-6">
+                <label>
+                    Confirm Password
+                </label>
+                <input type="password"
+                       class="form-control"
+                       ng-model="user.passwordConfirm"
+                       required />
+            </div>
+        </div>
+        <br/>
+        <div class="row">
+            <div class="col">
+                <button class="btn btn-block btn-outline-primary">
+                    Create Account
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
+@section Scripts{
+
+}
