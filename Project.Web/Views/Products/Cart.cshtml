@@ -46,7 +46,8 @@
         <div class="col-sm-2">
             <input type="number"
                    ng-model="product.amount"
-                   class="form-control input-group-sm" />
+                   class="form-control input-group-sm" 
+                   ng-change="refleshTotalToPay()"/>
         </div>
         <div class="col-sm-1">
             <button type="button"
@@ -61,18 +62,18 @@
     <div class="row">
         <div class="col-sm-4">
             <button type="button"
-                    class="btn btn-block">
+                    class="btn btn-block btn-outline-primary">
                 Create a Shopping List
             </button>
         </div>   
         <div class="col-sm-4">
             <button type="button"
-                    class="btn btn-block">
+                    class="btn btn-block btn-outline-success">
                 Buy
             </button>
         </div>   
         <div class="col-sm-4">
-            Total = {{totalToPay}}
+            Total = {{totalToPay | currency}}
         </div>
     </div>
 

@@ -151,6 +151,15 @@
 
         scope.getCart = function () {
             scope.cart = local.cart;
+            scope.refleshTotalToPay();
+        };
+
+        scope.refleshTotalToPay = function () {
+            scope.totalToPay = 0;
+
+            for (i = 0; i < scope.cart.length; i++) {
+                scope.totalToPay += scope.cart[i].price * scope.cart[i].amount;
+            }
         };
     }]);
 
