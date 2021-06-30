@@ -4,7 +4,8 @@
 }
 
 <div ng-init="verifyAuth()">
-    <ul class="nav nav-tabs">
+    <ul class="nav nav-tabs"
+        ng-if="user.role == 2">
         <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="/Account">General</a>
         </li>
@@ -93,7 +94,8 @@
             </div>
         </div>
     </form>
-    <div style=" border-top:groove">
+    <div style=" border-top:groove"
+         ng-if="user.role == 2">
         <div class="row">
             <div class="col">
                 Change Background

@@ -22,7 +22,8 @@ namespace Project.Context.Types
                 Login = "admin",
                 Password = "123",
                 PersonId = 1,
-                Id = 1
+                Id = 1,
+                Role = Role.admin
             });
         }
     }

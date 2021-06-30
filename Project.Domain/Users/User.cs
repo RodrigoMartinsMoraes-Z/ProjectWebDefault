@@ -17,6 +17,7 @@ namespace Project.Domain.Users
         public string Login { get; set; }
         public string Password { get => _pass; set => _pass = EncryptPassword(value); }
         public string Token { get; set; }
+        public Role Role{ get; set; }
 
         public virtual Person Person { get; }
 
