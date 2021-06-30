@@ -2,6 +2,8 @@
     ViewData["Title"] = "Cart";
 }
 
+<div ng-init="verifyAuth()"></div>
+
 <div ng-controller="productController"
      ng-init="getCart()">
 
@@ -62,7 +64,8 @@
     <div class="row">
         <div class="col-sm-4">
             <button type="button"
-                    class="btn btn-block btn-outline-primary">
+                    class="btn btn-block btn-outline-primary"
+                    ng-click="saveShoppingList()">
                 Create a Shopping List
             </button>
         </div>   

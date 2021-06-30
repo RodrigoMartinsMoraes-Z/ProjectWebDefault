@@ -16,7 +16,7 @@ namespace Project.Context.Types
             builder.HasKey(i => i.Id);
 
             builder.HasOne(i => i.Product).WithMany().HasForeignKey(i => i.ProductId);
-            builder.HasOne(i => i.Cart).WithMany(c => c.Items).HasForeignKey(i => i.CartId);
+            builder.HasOne(i => i.ShoppingList).WithMany(c => c.Items).HasForeignKey(i => i.ShoppingListId);
         }
     }
 }

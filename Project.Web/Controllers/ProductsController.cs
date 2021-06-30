@@ -18,5 +18,10 @@ namespace Project.Web.Controllers
         {
             return View();
         }
+
+        public IActionResult ShoppingList()
+        {
+            return View();
+        }
     }
 }

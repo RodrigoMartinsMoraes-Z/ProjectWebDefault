@@ -37,6 +37,9 @@ namespace Project.Web
 
             CreateMap<Item, ItemModel>();
             CreateMap<ItemModel, Item>();
+
+            CreateMap<CartProduct, Product>();
+
         }
 
         private void Image()

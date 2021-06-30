@@ -117,7 +117,7 @@
         };
 
         scope.listProducts = function () {
-            http.get("api/product/list?name="+scope.order.name+"&price="+scope.order.price+"&categoryId="+scope.order.category)
+            http.get("api/product/list?name=" + scope.order.name + "&price=" + scope.order.price + "&categoryId=" + scope.order.category)
                 .then(function (r) {
                     scope.products = r.data;
                 });
@@ -160,6 +160,17 @@
             for (i = 0; i < scope.cart.length; i++) {
                 scope.totalToPay += scope.cart[i].price * scope.cart[i].amount;
             }
+        };
+
+        scope.saveShoppingList = function () {
+            http.post("/api/shopping/" + scope.user.id, scope.cart, local.config);
+        };
+
+        scope.getShoppingList = function () {
+            http.get("/api/shopping/get-shopping-list/" + scope.user.id, local.config)
+                .then(function (r) {
+                    scope.shoppingList = r.data;
+                });
         };
     }]);
 
