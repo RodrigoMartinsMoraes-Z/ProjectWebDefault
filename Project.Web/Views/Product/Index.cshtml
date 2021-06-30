@@ -44,7 +44,7 @@
                         ng-init="getCategories()"
                         class="form-control"
                         id="p.category"
-                        ng-options="category.id as category.name for category in categories track by category.id"
+                        ng-options="category.id as category.name for category in categories track by category.id"                        
                         required>
                     <option value="" selected="selected">Select the Category</option>
                 </select>
@@ -59,6 +59,20 @@
                         style="margin-top:40px">
                     <i class="fa fa-plus"></i>
                 </button>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-4">
+                <label for="p.price">
+                    Price
+                </label>
+                <input type="number"
+                       class="form-control"
+                       step="0.01"
+                       required
+                       id="p.price"
+                       ng-model="product.price"/>
             </div>
         </div>
 

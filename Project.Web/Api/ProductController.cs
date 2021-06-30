@@ -58,6 +58,7 @@ namespace Project.Web.Api
             {
                 exist.Name = product.Name;
                 exist.Description = product.Description;
+                exist.Price = product.Price;
                 exist.Category = product.Category;
                 exist.CategoryId = product.CategoryId;
                 _context.Products.Update(exist);

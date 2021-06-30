@@ -54,6 +54,7 @@ namespace Project.Context.Migrations
                 table: "Users",
                 columns: new[] { "Id", "Email", "Login", "Password", "PersonId", "Token" },
                 values: new object[] { 1, "email@email.com", "admin", "OKEhrqRNQZr2fwi5v7SlQYFmH7Xm9y+u0MO8912xcok=", 1, null });
+            //the password are wrong, the correct is gqefEbSstSpkLvfjOd/OSqkv9l7S56twLXmNvhDsoLg=
 
             migrationBuilder.CreateIndex(
                 name: "IX_Users_Email",
