@@ -94,15 +94,24 @@ namespace Project.Web.Api
         [HttpGet, Route("list")]
         [AllowAnonymous]
         [ProducesResponseType(typeof(ProductModel[]), 200)]
-        public async Task<ActionResult> ListOfProduct(int take = 10, int skip = 0)
+        public async Task<ActionResult> ListOfProduct(bool name, bool price, int categoryId)
         {
-            var products = _context.Products.Where(p=>p.Category.Name != "Background").OrderBy(p => p.Id).Skip(skip).Take(take).ToList();
+            IOrderedQueryable<Product> products = _context.Products.Where(p => p.Category.Name != "Background").OrderBy(p => p.Id);
+
+            if (categoryId > 0)
+                products = (IOrderedQueryable<Product>)products.Where(p => p.CategoryId == categoryId);
+
+            if (name)
+                products = products.OrderBy(p => p.Name);
+
+            else if (price)
+                products = products.OrderBy(p => p.Price);
 
             IList<ProductModel> productsModel = new List<ProductModel>();
 
-            foreach (var product in products)
+            foreach (var product in products.ToList())
             {
-                foreach(var image in product.Images)
+                foreach (var image in product.Images)
                 {
                     image.Base64 = await _fileManager.ReadFile(image.Path);
                 }

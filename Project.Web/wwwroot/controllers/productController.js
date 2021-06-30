@@ -10,6 +10,15 @@
         scope.take = 10;
         scope.skip = 0;
 
+        scope.order = {
+            name: false,
+            price: false,
+            category: 0
+        }
+
+        if (local.cart == null)
+            local.cart = [];
+
         scope.getProduct = function () {
             http.get("api/product/" + model, local.config)
                 .then(function (r) {
@@ -90,12 +99,29 @@
                 });
         };
 
+        scope.orderByCategory = function (cat) {
+            scope.order.category = cat;
+            scope.listProducts();
+        };
+
+        scope.orderByName = function () {
+            scope.order.name = true;
+            scope.order.price = false;
+            scope.listProducts();
+        };
+
+        scope.orderByPrice = function () {
+            scope.order.name = false;
+            scope.order.price = true;
+            scope.listProducts();
+        };
+
         scope.listProducts = function () {
-            http.get("api/product/list?take=" + scope.take + "&skip=" + scope.skip)
+            http.get("api/product/list?name="+scope.order.name+"&price="+scope.order.price+"&categoryId="+scope.order.category)
                 .then(function (r) {
                     scope.products = r.data;
                 });
-        }
+        };
 
         scope.previousImage = function (min, imageIndex) {
             if (imageIndex > min)
@@ -107,6 +133,24 @@
             if (imageIndex < max - 1)
                 return imageIndex + 1;
             return imageIndex;
+        };
+
+        scope.addProductInCart = function (product) {
+            if (local.cart.includes(product)) {
+                index = local.cart.indexOf(product);
+                local.cart[index].amount += product.amount;
+            }
+            else
+                local.cart.push(product);
+        };
+
+        scope.removeFromCart = function (p) {
+            local.cart = local.cart.filter(product => product.id != p.id)
+            scope.cart = local.cart;
+        };
+
+        scope.getCart = function () {
+            scope.cart = local.cart;
         };
     }]);
 

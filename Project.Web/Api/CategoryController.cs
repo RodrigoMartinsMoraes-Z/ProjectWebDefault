@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -31,6 +32,7 @@ namespace Project.Web.Api
         }
 
         [ProducesResponseType(typeof(List<CategoryModel>), 200)]
+        [AllowAnonymous]
         [HttpGet]
         public async Task<ActionResult> GetCategories()
         {

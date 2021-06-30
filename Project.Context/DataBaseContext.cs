@@ -4,6 +4,7 @@ using Project.Context.Types;
 using Project.Domain.Context;
 using Project.Domain.People;
 using Project.Domain.Products;
+using Project.Domain.Shopping;
 using Project.Domain.Users;
 
 using System;
@@ -26,6 +27,10 @@ namespace Project.Context
 
         public DbSet<Image> Images { get; set; }
 
+        public DbSet<Item> Items { get; set; }
+
+        public DbSet<ShoppingList> ShoppingLists { get; set; }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             //User
@@ -36,6 +41,10 @@ namespace Project.Context
             builder.ApplyConfiguration(new ProductTypeConfiguration());
             builder.ApplyConfiguration(new ImageTypeConfiguration());
             builder.ApplyConfiguration(new CategoryTypeConfiguration());
+
+            //cart
+            builder.ApplyConfiguration(new ItemTypeConfiguration());
+            builder.ApplyConfiguration(new ShoppingListTypeConfiguration());
         }
     }
 }

@@ -1,0 +1,83 @@
+﻿@{
+    ViewData["Title"] = "Cart";
+}
+
+<div ng-controller="productController"
+     ng-init="getCart()">
+
+    <div class="row"
+         style="border-bottom:groove">
+        <div class="col-sm-3"></div>
+        <div class="col-sm-1">Product</div>
+        <div class="col-sm-2">Description</div>
+        <div class="col-sm-2">Category</div>
+        <div class="col-sm-1">Price</div>
+        <div class="col-sm-3">Amount</div>
+    </div>
+
+    <div class="row"
+         ng-repeat="product in cart"
+         style="margin:5px"
+         ng-init="min = 0; max = product.images.length; imageIndex = 0">
+        <div class="col-sm-1">
+            <button type="button"
+                    class="btn btn-sm btn-outline-primary"
+                    ng-click="imageIndex = previousImage(min, imageIndex)"
+                    style="margin-top:50%">
+                <i class="fa fa-arrow-alt-circle-left"></i>
+            </button>
+        </div>
+        <div class="col-sm-1">
+            <img src="data:{{product.images[imageIndex].type}};base64,{{product.images[imageIndex].base64}}"
+                 style='display:block; width:50px;height:50px;' />
+        </div>
+        <div class="col-sm-1">
+            <button type="button"
+                    class="btn btn-sm btn-outline-primary"
+                    ng-click="imageIndex = nextImage(max, imageIndex)"
+                    style="margin-top:50%">
+                <i class="fa fa-arrow-alt-circle-right"></i>
+            </button>
+        </div>
+        <div class="col-sm-1">{{product.name}}</div>
+        <div class="col-sm-2">{{product.description}}</div>
+        <div class="col-sm-2">{{product.category.name}}</div>
+        <div class="col-sm-1">{{product.price | currency}}</div>
+        <div class="col-sm-2">
+            <input type="number"
+                   ng-model="product.amount"
+                   class="form-control input-group-sm" />
+        </div>
+        <div class="col-sm-1">
+            <button type="button"
+                    class="btn btn-sm btn-outline-info"
+                    title="edit"
+                    ng-click="removeFromCart(product)">
+                <i class="fa fa-minus-square"></i>
+            </button>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-4">
+            <button type="button"
+                    class="btn btn-block">
+                Create a Shopping List
+            </button>
+        </div>   
+        <div class="col-sm-4">
+            <button type="button"
+                    class="btn btn-block">
+                Buy
+            </button>
+        </div>   
+        <div class="col-sm-4">
+            Total = {{totalToPay}}
+        </div>
+    </div>
+
+</div>
+
+@section Scripts{
+    <script src="~/controllers/productController.js"></script>
+}

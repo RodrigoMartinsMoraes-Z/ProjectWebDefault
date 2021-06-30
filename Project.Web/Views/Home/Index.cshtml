@@ -1,5 +1,81 @@
 ﻿
-<div></div>
-@section Scripts{
+<div ng-controller="productController"
+     ng-init="getCategories()">
+    <div class="table"
+         ng-init="listProducts()">
+        <div class="row"
+             style="border-bottom:groove">
+            <div class="col-sm-3">
+                <select ng-model="categoryId"
+                        ng-init="getCategories()"
+                        class="form-control"
+                        id="p.category"
+                        ng-options="category.id as category.name for category in categories track by category.id"
+                        ng-change="orderByCategory(categoryId)">
+                    <option value="" selected="selected">Filter by Category</option>
+                </select>
+            </div>
+            <div class="col-sm-1">
+                <a href="" ng-click="orderByName()">
+                    Name
+                </a>
+            </div>
+            <div class="col-sm-2">Description</div>
+            <div class="col-sm-2">Category</div>
+            <div class="col-sm-1">
+                <a href="" ng-click="orderByPrice()">
+                    Price
+                </a>
+            </div>
+            <div class="col-sm-3">Amount</div>
+        </div>
 
+        <div class="row"
+             ng-repeat="product in products"
+             style="margin:5px"
+             ng-init="min = 0; max = product.images.length; imageIndex = 0">
+            <div class="col-sm-1">
+                <button type="button"
+                        class="btn btn-sm btn-outline-primary"
+                        ng-click="imageIndex = previousImage(min, imageIndex)"
+                        style="margin-top:50%">
+                    <i class="fa fa-arrow-alt-circle-left"></i>
+                </button>
+            </div>
+            <div class="col-sm-1">
+                <img src="data:{{product.images[imageIndex].type}};base64,{{product.images[imageIndex].base64}}"
+                     style='display:block; width:50px;height:50px;' />
+            </div>
+            <div class="col-sm-1">
+                <button type="button"
+                        class="btn btn-sm btn-outline-primary"
+                        ng-click="imageIndex = nextImage(max, imageIndex)"
+                        style="margin-top:50%">
+                    <i class="fa fa-arrow-alt-circle-right"></i>
+                </button>
+            </div>
+            <div class="col-sm-1">{{product.name}}</div>
+            <div class="col-sm-2">{{product.description}}</div>
+            <div class="col-sm-2">{{product.category.name}}</div>
+            <div class="col-sm-1">{{product.price | currency}}</div>
+            <div class="col-sm-2">
+                <input type="number"
+                       ng-init="product.amount = 1"
+                       ng-model="product.amount"
+                       min="1"
+                       class="form-control input-group-sm" />
+            </div>
+            <div class="col-sm-1">
+                <button type="button"
+                        class="btn btn-sm btn-outline-info"
+                        title="edit"
+                        ng-click="addProductInCart(product)">
+                    <i class="fa fa-plus-square"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts{
+    <script src="~/controllers/productController.js"></script>
 }

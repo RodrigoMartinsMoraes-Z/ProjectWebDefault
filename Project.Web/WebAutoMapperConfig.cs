@@ -2,10 +2,12 @@
 
 using Project.Domain.People;
 using Project.Domain.Products;
+using Project.Domain.Shopping;
 using Project.Domain.Users;
 using Project.Web.Models.Images;
 using Project.Web.Models.People;
 using Project.Web.Models.Product;
+using Project.Web.Models.Shopping;
 using Project.Web.Models.Users;
 
 using System;
@@ -29,6 +31,12 @@ namespace Project.Web
 
             CreateMap<Category, CategoryModel>();
             CreateMap<CategoryModel, Category>();
+
+            CreateMap<ShoppingList, ShoppingListModel>();
+            CreateMap<ShoppingListModel, ShoppingList>();
+
+            CreateMap<Item, ItemModel>();
+            CreateMap<ItemModel, Item>();
         }
 
         private void Image()

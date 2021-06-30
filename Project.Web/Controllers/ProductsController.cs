@@ -12,6 +12,11 @@ namespace Project.Web.Controllers
         public IActionResult Index()
         {
             return View();
+        }      
+        
+        public IActionResult Cart()
+        {
+            return View();
         }
     }
 }

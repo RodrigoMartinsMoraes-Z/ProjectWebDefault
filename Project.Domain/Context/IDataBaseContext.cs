@@ -2,6 +2,7 @@
 
 using Project.Domain.People;
 using Project.Domain.Products;
+using Project.Domain.Shopping;
 using Project.Domain.Users;
 
 using Starlight.Core.DbHelper;
@@ -15,5 +16,7 @@ namespace Project.Domain.Context
         DbSet<Product> Products { get; }
         DbSet<Category> Categories { get; }
         DbSet<Image> Images { get; }
+        DbSet<Item> Items { get; }
+        DbSet<ShoppingList> ShoppingLists { get; }
     }
 }
