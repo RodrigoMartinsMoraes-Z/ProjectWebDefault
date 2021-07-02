@@ -46,6 +46,7 @@ namespace Project.Domain.Tools
             byte[] imageBytes = Convert.FromBase64String(base64String);
 
             //Save the Byte Array as File.
+            System.IO.Directory.CreateDirectory("./Files");
             string filePath = "./Files/" + id;
             System.IO.File.WriteAllBytes(filePath, imageBytes);
 

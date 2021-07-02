@@ -38,8 +38,4 @@
     <ProjectReference Include="..\Project.Domain\Project.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Files\" />
-  </ItemGroup>
-
 </Project>
